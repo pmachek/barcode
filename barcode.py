@@ -11,6 +11,7 @@ from qrcode.qrcode import QRCode
 from image.svg import SvgBarcodeImage
 from image.png import PngBarcodeImage
 from image.bmp import BmpBarcodeImage
+from image.gif import GifBarcodeImage
 
 
 parser = argparse.ArgumentParser(
@@ -20,7 +21,7 @@ parser.add_argument(
     '--file-type',
     type=str,
     default="png",
-    choices=["svg", "png", "bmp"],
+    choices=["svg", "png", "bmp", "gif"],
     help="Generated image filetype."
 )
 parser.add_argument(
@@ -81,7 +82,8 @@ def main(cmd_args=None):
     image_classes = {
         "svg": SvgBarcodeImage,
         "png": PngBarcodeImage,
-        "bmp": BmpBarcodeImage
+        "bmp": BmpBarcodeImage,
+        "gif": GifBarcodeImage
     }
     if cmd_args is None:
         args = parser.parse_args()

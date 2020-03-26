@@ -19,7 +19,6 @@ class Ean(BarcodeEncoding):
     )
 
     code_bitlength = 7
-    #bits = partial(bits, length=code_length)
 
     # EAN13 constants
     quiet_zone_left_ean13 = 13

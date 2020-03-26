@@ -57,7 +57,7 @@ def test_svg_image():
 def test_cmd():
     contents = ("hello world", "HELLO WORLD", "0123456789")
     barcode_types = ("code93", "code128", "qrcode")
-    file_types = ("png", "svg", "bmp")
+    file_types = ("png", "svg", "bmp", "gif")
     for content in contents:
         for barcode_type in barcode_types:
             for file_type in file_types:
@@ -67,6 +67,7 @@ def test_cmd():
                     content,
                     "{}_{}.{}".format(content, barcode_type, file_type)
                 ]
+                # TODO: implement labels in qrcode/2D barcodes
                 #if barcode_type != "qrcode" and content.isnumeric():
                 #    args.insert(2, "--label={}".format(content))
                 print(args)

@@ -13,7 +13,7 @@ class SvgBarcodeImage(BarcodeImage):
                 ' height="{height}" fill="{fill}" />\n'
     TEXT = '    <text x="{x}" y="{y}" width="{width}"'\
            ' height="{height}" font-size="{font_size}"'\
-           ' font-family="monospace" color="#000">{text}</text>\n'  #TODO: font size settings
+           ' font-family="monospace" color="#000">{text}</text>\n'
     
     def _write_header(self, image_file):
         image_file.write(

@@ -41,8 +41,6 @@ class Code128(BarcodeEncoding):
     # bit length of non-control characters
     code_bitlength = 11
 
-    # bits = partial(bits, length=code_bitlength)
-
     @classmethod
     def _enc_A(cls, char):
         """Encode single character from A alphabet
