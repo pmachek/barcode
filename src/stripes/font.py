@@ -1,5 +1,5 @@
 import re
-import sys  # only for testing
+from os import path
 
 
 def repeat(it, coeff):
@@ -26,8 +26,8 @@ class Font:
             first_line = next(lines).lower()
             if not re.match(r"characters \d+x\d+$", first_line):
                 raise RuntimeError(
-                    "Font resource file must start with character "
-                    "dimension definition in format 'characters WIDTHxHEIGHT'. "
+                    "Font resource file must start with character dimension "
+                    "definition in format 'characters WIDTHxHEIGHT'. "
                     "for example 'characters 3x5'"
                 )
             width, height = (int(val) for val in first_line[11:].split("x"))
@@ -107,12 +107,7 @@ class Font:
             )
 
 
-#font_3x5_path = "font3x5.txt"
-if sys.platform == 'win32':
-    font_5x7_path = r"j:\Zdrojaky\Python\barcode_iter\font5x7.txt"
-else:
-    font_5x7_path = "/media/user/6449-3D50/Zdrojaky/Python/barcode_iter/font5x7.txt"
+data_dir = path.abspath(path.join(path.dirname(__file__), "data"))
 
-
-#font3x5 = Font(font_3x5_path)
-font5x7 = Font(font_5x7_path)
+font3x5 = Font(path.join(data_dir, "font3x5.txt"))
+font5x7 = Font(path.join(data_dir, "font5x7.txt"))

@@ -30,7 +30,6 @@ class Ean(BarcodeEncoding):
     )
 
     # EAN8 constants
-    # TODO: Check standard for quiet zone widths
     quiet_zone_left_ean8 = 8
     quiet_zone_right_ean8 = 8
 

@@ -20,7 +20,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     '--file-type',
     type=str,
-    default="png",
+    default=None,
     choices=["svg", "png", "bmp", "gif"],
     help="Generated image filetype."
 )
@@ -97,7 +97,12 @@ def main(cmd_args=None):
         )
     scale = args.scale or (2 if encoding.dimensionality == "linear" else 16)
     barcode_height = args.barcode_height  # TODO: take default height from barcode type
-    image_class = image_classes.get(args.file_type)
+    file_type = args.file_type
+    if file_type is None:
+        name_split = args.out.rsplit(".", 1)
+        if len(name_split) == 2:
+            file_type = name_split[1].lower()
+    image_class = image_classes.get(file_type)
     if image_class is None:
         raise ValueError(
             "Unknown image file type {!r}".format(args.file_type)
@@ -121,7 +126,7 @@ def main(cmd_args=None):
         font = font5x7
         label_height = args.label_height or (scale * (font.height + 6))
         text_areas = encoding.label_text_areas(args.label)
-        text_mask = encoding.label_mask(args.label)  # TODO: support label masks
+        text_mask = encoding.label_mask(args.label)
         image.set_label(label_height, text_areas, text_mask, font)
     with open(args.out, image.file_open_mode) as image_file:
         image.write(image_file)
