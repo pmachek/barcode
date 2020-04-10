@@ -8,13 +8,13 @@ from abc import ABC, abstractmethod
 
 
 class BarcodeImage(ABC):
-    file_open_mode = "wb"
-
     """Abstract class representing image of a 1D or 2D barcode
 
     Barcode can optionally contain a label, usually containing
     the same information as the barcode.
     """
+    file_open_mode = "wb"
+
     def __init__(self, data_bits, barcode_height=None, label_height=0,
                  scale=None, barcode_type="linear", text_areas=None,
                  text_mask=None, font=None):

@@ -55,7 +55,7 @@ def test_svg_image():
 
 
 def test_cmd():
-    contents = ("hello world", "HELLO WORLD", "0123456789")
+    contents = ("hello world", "WIKIPEDIA", "0123456789")
     barcode_types = ("code93", "code128", "qrcode")
     file_types = ("png", "svg", "bmp", "gif")
     for content in contents:
@@ -64,6 +64,7 @@ def test_cmd():
                 args = [
                     "--barcode-type={}".format(barcode_type),
                     "--file-type={}".format(file_type),
+                    # "--label={}".format(content),
                     content,
                     "{}_{}.{}".format(content, barcode_type, file_type)
                 ]

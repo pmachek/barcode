@@ -123,7 +123,7 @@ class Code93(BarcodeEncoding):
         checksum1 = 0
         checksum2 = 0
         yield from cls.bits(0, cls.code_bitlength + 1)
-        yield from cls.bits(cls.start, cls.code_bitlength)
+        yield from cls.bits(cls.pattern[cls.start], cls.code_bitlength)
         for code in codes:
             yield from cls.bits(cls.pattern[code], cls.code_bitlength)
             checksum1 += weight * code
@@ -134,7 +134,7 @@ class Code93(BarcodeEncoding):
         checksum2 %= 47
         yield from cls.bits(cls.pattern[checksum1], cls.code_bitlength)
         yield from cls.bits(cls.pattern[checksum2], cls.code_bitlength)
-        yield from cls.bits(cls.stop, cls.code_bitlength)
+        yield from cls.bits(cls.pattern[cls.stop], cls.code_bitlength)
         yield from cls.bits(1, 1)
         yield from cls.bits(0, cls.code_bitlength + 1)
 
